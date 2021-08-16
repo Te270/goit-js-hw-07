@@ -15,12 +15,13 @@ const images = [
 
 const galleryEl = document.querySelector("#gallery");
 
-images.forEach((image) => {
-  galleryEl.insertAdjacentHTML(
-    "afterbegin",
-    `<li><img src = "${image.url}" alt = "${image.alt}" width = "300" height = "220" /></li>`
-  );
-});
+const createGallery = (array) => {
+  const imagesTags = ({ url, alt }) =>
+    `<li><img src='${url}' alt='${alt}' width = "300" height = "220"></li>`;
+  const gallery = images.map(imagesTags).join(" ");
+  galleryEl.insertAdjacentHTML("beforeend", gallery);
+};
+createGallery(images);
 console.log(galleryEl);
 
 // Напиши скрипт для создания галлереи изображений по массиву данных.
@@ -32,3 +33,10 @@ console.log(galleryEl);
 
 // Все элементы галереи должны добавляться в DOM за одну операцию вставки.
 // Добавь минимальное оформление галереи флексбоксами или гридами через css-классы.
+
+/* images.forEach((image) => {});
+galleryEl.insertAdjacentHTML(
+  "afterbegin",
+  `<li><img src = "${image.url}" alt = "${image.alt}" width = "300" height = "220" /></li>`
+);
+console.log(galleryEl); */
